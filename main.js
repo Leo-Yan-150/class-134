@@ -1,6 +1,6 @@
 img = ""
 zstatus = "";
-object=[];
+objects=[];
 r = 0;
 g = 0;
 b = 0;
@@ -28,16 +28,16 @@ if(zstatus != ""){
     g = random(255);
     b = random(255);
     objectDetector.detect(video, gotResult);
-    for(c = 0; c < object.length; c++){
+    for(c = 0; c < objects.length; c++){
         document.getElementById("status").innerHTML = "Status: object identified";
-        document.getElementById("numberofobjects").innerHTML = "The number of objected are: " + object.length;
+        document.getElementById("numberofobjects").innerHTML = "The number of objected are: " + objects.length;
 
         fill(r,g,b);
-        percent = floor(object[c].confidence*100);
-        text(object[c].label + " " + percent + "%", object[c].x + 15, object[c].y + 15);
+        percent = floor(objects[c].confidence*100);
+        text(objects[c].label + " " + percent + "%", objects[c].x + 15, objects[c].y + 15);
         noFill();
         stroke(r,g,b);
-        rect(object[c].x, object[c].y, object[c].width, object[c].height);
+        rect(objects[c].x, objects[c].y, objects[c].width, objects[c].height);
     }
 }
 }
@@ -52,5 +52,5 @@ function gotResult(error, results){
         console.error(error);
     }
     console.log(results);
-    object = results;
+    objects = results;
 }
